@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+$:.push File.expand_path(File.dirname(__FILE__) + '/../lib')
+
+require "programb/version"
+require "programb/kernel"
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: programb [OPTIONS]"
+  opts.separator  ""
+  opts.separator  "Options"
+
+  opts.on('-v', '--verbose', 'run programB in verbose mode') { $VERBOSE = true }
+  opts.on('-h', '--help', 'help') { puts opts; exit; }
+
+end.parse!
+
+bixsby = Programb::Kernel.new
+bixsby.learn("aiml/alice")
+bixsby.learn("test/aiml")
+
+while true
+  print "/User #{Time.now.strftime('%H:%M:%S')}> "
+  input = gets.chomp.to_s
+  response = bixsby.respond(input)
+  puts "/programB #{Time.now.strftime('%H:%M:%S')}> #{response}"
+end
