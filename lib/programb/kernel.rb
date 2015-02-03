@@ -45,7 +45,6 @@ module Programb
         "input"       => method(:process_input),
         "system"      => method(:process_system),
         "thatstar"    => method(:process_thatstar),
-        "bot"         => method(:process_bot),
         "uppercase"   => method(:process_uppercase),
         "version"     => method(:process_version),
         "think"       => method(:process_think)
